@@ -1,15 +1,5 @@
 // Level-2
 
-// What's the problem with this program?
-// How should it be organized?
-
-// Would you use just files storing the data?
-// How could you upgrade it to being a Database app?
-
-// reduce the number of printlns scattered thru the code, how could you
-// make more use of templates
-
-/******************** Importing Essential Libraries ************************/
 
 import java.util.*;
 import java.io.*;
@@ -73,6 +63,11 @@ class EmployeeDetail {
     this.employ_contact = employ_contact;
   }
 
+  /* 
+   * this is not ideal, as it couples the class to the console
+   * it would be better to have a method that takes a Scanner as an argument
+   * and reads the data from it
+   */
   public static EmployeeDetail captureEmployeeInfo() {
     EmployeeDetail employee = new EmployeeDetail();
     Scanner sc = new Scanner(System.in);
