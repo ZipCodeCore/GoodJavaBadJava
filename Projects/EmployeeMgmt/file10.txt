@@ -1,8 +1,12 @@
 
-Employee ID:10
+
+
+
+
+Employee ID:19
 Employee Name     :Chris
-Father's Name     :Joe
+Father's Name     :Kris
 Employee Contact  :foo bar baz
-Email Information :k@k.com
+Email Information :z@z.com
 Employee position :president
-Employee Salary   :100000
+Employee Salary   :199999

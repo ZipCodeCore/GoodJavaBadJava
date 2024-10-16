@@ -14,12 +14,256 @@
 import java.util.*;
 import java.io.*;
 
+/************************* Employee Details ************************/
 
-/*************************** MENU OF EMS ****************************/
-class MainMenu
-{
-  public void menu()
-  {
+class EmployeeDetail {
+  private String name;
+  private String email;
+  private String position;
+  private String employ_id;
+  private String employ_salary;
+  private String employ_contact;
+
+  // Getters and Setters
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPosition() {
+    return position;
+  }
+
+  public void setPosition(String position) {
+    this.position = position;
+  }
+
+  public String getEmploy_id() {
+    return employ_id;
+  }
+
+  public void setEmploy_id(String employ_id) {
+    this.employ_id = employ_id;
+  }
+
+  public String getEmploy_salary() {
+    return employ_salary;
+  }
+
+  public void setEmploy_salary(String employ_salary) {
+    this.employ_salary = employ_salary;
+  }
+
+  public String getEmploy_contact() {
+    return employ_contact;
+  }
+
+  public void setEmploy_contact(String employ_contact) {
+    this.employ_contact = employ_contact;
+  }
+
+  public static EmployeeDetail captureEmployeeInfo() {
+    EmployeeDetail employee = new EmployeeDetail();
+    Scanner sc = new Scanner(System.in);
+
+    System.out.print("Enter Employee's name --------: ");
+    employee.setName(sc.nextLine());
+    System.out.print("Enter Employee's ID ----------: ");
+    employee.setEmploy_id(sc.nextLine());
+    System.out.print("Enter Employee's Email ID ----: ");
+    employee.setEmail(sc.nextLine());
+    System.out.print("Enter Employee's Position ----: ");
+    employee.setPosition(sc.nextLine());
+    System.out.print("Enter Employee contact Info --: ");
+    employee.setEmploy_contact(sc.nextLine());
+    System.out.print("Enter Employee's Salary ------: ");
+    employee.setEmploy_salary(sc.nextLine());
+    sc.close();
+
+    return employee;
+  }
+}
+
+/***************************** Main Class *******************************/
+public class BetterEmployManagementSystem {
+
+    Scanner scannerIn = new Scanner(System.in);
+
+  public static void main(String arv[]) {
+    BetterEmployManagementSystem ems = new BetterEmployManagementSystem();
+    ems.runInteractiveLoop();
+  }
+
+  public void runInteractiveLoop() {
+    /** To clear the output Screen **/
+    System.out.print("\033[H\033[2J");
+
+    int choice = 0;
+
+    this.printMenu();
+    /*** Initialising loop for Menu Choices ***/
+    while (choice < 6) {
+
+      System.out.print("\nPlease Enter choice :");
+      choice = Integer.parseInt(scannerIn.nextLine());
+
+      /** Switch Case Statements **/
+      switch (choice) {
+        case 1: { // add employee
+          this.addEmployee();
+          this.printMenu();
+          break;
+        }
+        case 2: {
+          String s = promptForEmployeeId();
+          try {
+            this.viewEmployee(s);
+          } catch (Exception e) {
+            System.out.println(e);
+          }
+
+          continuePrompt();
+          this.printMenu();
+          break;
+        }
+
+        case 3: {
+          String s = promptForEmployeeId();
+          this.removeEmployee(s);
+
+          continuePrompt();
+          this.printMenu();
+          break;
+        }
+        case 4: {
+          String s = promptForEmployeeId();
+          try {
+            this.viewEmployee(s);
+          } catch (Exception e) {
+            System.out.println(e);
+          }
+         
+
+          System.out.print("Please Enter the field you want to Update :");
+          System.out.print("\nFor Example :\n");
+          System.out.println(
+              "If you want to Change the Name, then Enter Current Name and Press Enter. \nThen write the new Name then Press Enter. \nIt will Update the Name.\n");
+          String currentVal = scannerIn.nextLine();
+          System.out.print("Please Enter the Updated Info :");
+          String newVal = scannerIn.nextLine();
+          try {
+            this.updateEmployee(s, currentVal, newVal);
+
+            continuePrompt();
+            this.printMenu();
+            break;
+          } catch (IOException e) {
+            System.out.println(e);
+          }
+        }
+        case 5: {
+          this.exitSystem();
+        }
+      }
+    }
+  }
+
+  private void continuePrompt() {
+    System.out.print("\nPress Enter to Continue...");
+    scannerIn.nextLine();
+  }
+
+  private String promptForEmployeeId() {
+    System.out.print("\nPlease Enter Employee's ID :");
+    String s = scannerIn.nextLine();
+    return s;
+  }
+
+  public void addEmployee() {
+
+    EmployDetail emp = new EmployDetail();
+    emp.getInfo();
+    try {
+      File f1 = new File("file" + emp.employ_id + ".txt");
+      if (f1.createNewFile()) {
+        FileWriter myWriter = new FileWriter("file" + emp.employ_id + ".txt");
+        myWriter.write("Employee ID:" + emp.employ_id + "\n" + "Employee Name     :" + emp.name + "\n" +
+            "Father's Name     :" + emp.father_name + "\n" + "Employee Contact  :" + emp.employ_contact + "\n" +
+            "Email Information :" + emp.email + "\n" + "Employee position :" + emp.position + "\n" +
+            "Employee Salary   :" + emp.employ_salary);
+        myWriter.close();
+        System.out.println("\nEmployee has been Added :)\n");
+        continuePrompt();
+      } else {
+        System.out.println("\nEmployee already exists :(");
+        continuePrompt();
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
+
+  public void viewEmployee(String s) throws Exception {
+    File file = new File("file" + s + ".txt");
+    Scanner sc = new Scanner(file);
+
+    while (sc.hasNextLine()) {
+      System.out.println(sc.nextLine());
+    }
+    sc.close();
+  }
+
+  public void removeEmployee(String ID) {
+
+    File file = new File("file" + ID + ".txt");
+    if (file.exists()) {
+      if (file.delete())
+        ;
+      {
+        System.out.println("\nEmployee has been removed Successfully");
+      }
+    } else {
+      System.out.println("\nEmployee does not exists :( ");
+    }
+  }
+
+  public void updateEmployee(String s, String o, String n) throws IOException {
+    File file = new File("file" + s + ".txt");
+    Scanner sc = new Scanner(file);
+    String fileContext = "";
+    while (sc.hasNextLine()) {
+      fileContext = fileContext + "\n" + sc.nextLine();
+    }
+    fileContext = fileContext.replaceAll(o, n);
+
+    FileWriter myWriter = new FileWriter("file" + s + ".txt");
+    myWriter.write(fileContext);
+    myWriter.close();
+
+    sc.close();
+    /*
+     * There is a really insidious bug here. 
+     * the replaceAll method is replacing all occurrences of the string,
+     * so if the user wants to change the name from "John" to "Johnny",
+     * it will also change the name from "Johnson" to "Johnnyson".
+     * Among other problems...
+     */
+  }
+
+  public void printMenu() {
+    System.out.print("\033[H\033[2J");
+
     System.out.println("\t\t*******************************************");
     System.out.println("\t\t\t  EMPLOYEE MANAGEMENT SYSTEM");
     System.out.println("\t\t*******************************************");
@@ -30,254 +274,11 @@ class MainMenu
     System.out.println("Press 5 : To Exit the EMS Portal");
 
   }
-}
 
-/************************ To add details of Employee *********************/
-
-class Employee_Add
-{
-    public void createFile()
-    {
-        Scanner sc=new Scanner(System.in);
-
-        EmployDetail emp=new EmployDetail();
-        emp.getInfo();
-        try{
-            File f1=new File("file"+emp.employ_id+".txt");
-            if(f1.createNewFile()){
-                FileWriter myWriter = new FileWriter("file"+emp.employ_id+".txt");
-                myWriter.write("Employee ID:"+emp.employ_id+"\n"+"Employee Name     :"+emp.name+"\n"+
-                "Father's Name     :"+emp.father_name+"\n"+"Employee Contact  :"+emp.employ_contact+"\n"+
-                "Email Information :"+emp.email+"\n"+"Employee position :"+emp.position+"\n"+
-                "Employee Salary   :"+emp.employ_salary);
-                myWriter.close();
-                System.out.println("\nEmployee has been Added :)\n");
-
-                System.out.print("\nPress Enter to Continue...");
-                sc.nextLine();
-            }
-            else {
-                System.out.println("\nEmployee already exists :(");
-                System.out.print("\nPress Enter to Continue...");
-                sc.nextLine();
-            }
-        }
-        catch(Exception e){System.out.println(e);}
-    }
-}
-
-/************************* Taking Employee Details ************************/
-
-class EmployDetail
-{
-    String name;
-    String father_name;
-    String email;
-    String position;
-    String employ_id;
-    String employ_salary;
-    String employ_contact;
-    public void getInfo()
-    {
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter Employee's name --------: ");
-        name=sc.nextLine();
-        System.out.print("Enter Employee's Father name -: ");
-        father_name=sc.nextLine();
-        System.out.print("Enter Employee's ID ----------: ");
-        employ_id=sc.nextLine();
-        System.out.print("Enter Employee's Email ID ----: ");
-        email=sc.nextLine();
-        System.out.print("Enter Employee's Position ----: ");
-        position=sc.nextLine();
-        System.out.print("Enter Employee contact Info --: ");
-        employ_contact=sc.nextLine();
-        System.out.print("Enter Employee's Salary ------: ");
-        employ_salary=sc.nextLine();
-    }
-}
-
-/************************ To Show details of Employee *********************/
-
-class Employee_Show
-{
-  public void viewFile(String s) throws Exception
-  {
-    File file = new File("file"+s+".txt");
-    Scanner sc = new Scanner(file);
-
-    while (sc.hasNextLine())
-     {
-       System.out.println(sc.nextLine());
-     }
-   }
-}
-
-/***************************** To Remove Employee *************************/
-
-class Employee_Remove
-{
-    public void removeFile(String ID)
-    {
-
-    File file = new File("file"+ID+".txt");
-      if(file.exists())
-       {
-         if(file.delete());
-         {
-           System.out.println("\nEmployee has been removed Successfully");
-         }
-       }
-      else
-       {
-            System.out.println("\nEmployee does not exists :( ");
-       }
-     }
-}
-
-/************************ To Update details of Employee ********************/
-
-class Employee_Update
-{
-  public void updateFile(String s,String o,String n) throws IOException
-  {
-   File file = new File("file"+s+".txt");
-   Scanner sc = new Scanner(file);
-   String fileContext="";
-   while (sc.hasNextLine())
-       {
-         fileContext =fileContext+"\n"+sc.nextLine();
-       }
-   FileWriter myWriter = new FileWriter("file"+s+".txt");
-   fileContext = fileContext.replaceAll(o,n);
-   myWriter.write(fileContext);
-   myWriter.close();
-
-  }
-}
-
-
-/************************ To Exit from the EMS Portal *********************/
-
-class CodeExit
-{
-  public void out()
-  {
+  public void exitSystem() {
     System.out.println("\n*****************************************");
     System.out.println("$ cat Thank You For Using my Software :) ");
     System.out.println("*****************************************");
     System.exit(0);
-  }
-}
-
-
-/***************************** Main Class *******************************/
-public class BadEmployManagementSystem
-{
-  public static void main(String arv[])
-  {
-    /** To clear the output Screen **/
-    System.out.print("\033[H\033[2J");
-
-    Scanner sc=new Scanner(System.in);
-    Employee_Show epv =new Employee_Show();
-
-    int i=0;
-
-    /*** Callining Mainmenu Class function ****/
-    MainMenu obj1 = new MainMenu();
-    obj1.menu();
-
-    /*** Initialising loop for Menu Choices ***/
-    while(i<6)
-    {
-
-      System.out.print("\nPlease Enter choice :");
-      i=Integer.parseInt(sc.nextLine());
-
-      /** Switch Case Statements **/
-      switch(i)
-      {
-        case 1:
-        {
-        /** Creating class's object and calling Function using that object **/
-        Employee_Add ep =new Employee_Add();
-        ep.createFile();
-
-        System.out.print("\033[H\033[2J");
-        obj1.menu();
-        break;
-        }
-        case 2:
-        {
-          System.out.print("\nPlease Enter Employee's ID :");
-          String s=sc.nextLine();
-          try
-          {
-            epv.viewFile(s);}
-            catch(Exception e){System.out.println(e);}
-
-
-            System.out.print("\nPress Enter to Continue...");
-            sc.nextLine();
-            System.out.print("\033[H\033[2J");
-            obj1.menu();
-            break;
-          }
-
-        case 3:
-        {
-          System.out.print("\nPlease Enter Employee's ID :");
-          String s=sc.nextLine();
-          Employee_Remove epr =new Employee_Remove();
-          epr.removeFile(s);
-
-          System.out.print("\nPress Enter to Continue...");
-          sc.nextLine();
-          System.out.print("\033[H\033[2J");
-          obj1.menu();
-          break;
-        }
-        case 4:
-        {
-            System.out.print("\nPlease Enter Employee's ID :");
-            String I=sc.nextLine();
-            try
-            {
-              epv.viewFile(I);
-            }
-            catch(Exception e)
-            {
-              System.out.println(e);
-            }
-            Employee_Update epu = new Employee_Update();
-            System.out.print("Please Enter the detail you want to Update :");
-    	      System.out.print("\nFor Example :\n");
-            System.out.println("If you want to Change the Name, then Enter Current Name and Press Enter. Then write the new Name then Press Enter. It will Update the Name.\n");
-            String s=sc.nextLine();
-            System.out.print("Please Enter the Updated Info :");
-            String n=sc.nextLine();
-            try
-            {
-              epu.updateFile(I,s,n);
-
-              System.out.print("\nPress Enter to Continue...");
-              sc.nextLine();
-              System.out.print("\033[H\033[2J");
-              obj1.menu();
-              break;
-            }
-            catch(IOException e)
-            {
-              System.out.println(e);
-            }
-        }
-        case 5:
-        {
-          CodeExit obj = new CodeExit();
-          obj.out();
-        }
-      }
-    }
   }
 }
