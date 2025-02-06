@@ -16,4 +16,7 @@ Run `javac BadToDoList.java` and then `java BadToDoList` to see the operations.
 
 Run `javac GoodToDoList.java` and then `java GoodToDoList` to see the output.
 
+## Now add functionality
 
+- a class that takes an arraylist of tasks and saves to file?
+- integrate it into the program.
