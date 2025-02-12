@@ -21,20 +21,20 @@ import java.util.Scanner;
 // You can also improve the user interface by adding more options and better error handling.
 
 public class GoodToDoList {
+
     private ArrayList<Task> taskList = new ArrayList<>();
     private int taskIdCounter = 0;
-    private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         GoodToDoList app = new GoodToDoList();
-        app.runInteractive();
+        app.runInteractive(new Scanner(System.in)); //dependency injection(!)
     }
 
     public GoodToDoList() {
         // Load tasks from storage
     }
 
-    private void runInteractive() {
+    private void runInteractive(Scanner scanner) {
         String result = ""; // to store the result of the operation
 
         while (true) {
@@ -107,7 +107,7 @@ public class GoodToDoList {
         } else {
             sb.append("Tasks:\n");
             for (Task task : taskList) {
-            sb.append(task).append("\n");
+                sb.append(task).append("\n");
             }
         }
         return sb.toString();
@@ -145,13 +145,13 @@ public class GoodToDoList {
         return "Task not found.";
     }
 
-
-// this is known as a Bean, a Java Bean is a simple Java class that follows some conventions:
-// It must have a no-arg constructor.
-// It must have private fields.
-// It must have getter and setter methods for the fields.
-// It must implement the Serializable interface (optional).
+    // this is known as a Bean, a Java Bean is a simple Java class that follows some conventions:
+    // It must have a no-arg constructor.
+    // It must have private fields.
+    // It must have getter and setter methods for the fields.
+    // It must implement the Serializable interface (optional).
     class Task {
+
         private int id;
         private String description;
         private boolean completed;
@@ -183,5 +183,4 @@ public class GoodToDoList {
             return id + ". [" + (completed ? "X" : " ") + "] " + description;
         }
     }
-
 }
