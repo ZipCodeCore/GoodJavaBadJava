@@ -2,7 +2,15 @@
 
 An example of why sometimes it is okay to use static in your classes.
 
-BadFindWord and GoodFindWord.
+Many times beginners have trouble understanding the concept of static in Java.
+It's bad that `class` get used to define a class but cannot be used as modifiers for methods or variables.
+So `static` is used to define methods and variables that belong to the class itself, not to instances of the class.
+
+And since the `instance` methods and variables are the default, it's easy to confuse why static methods and variables exist.
+
+This project is a simple example of why static methods are useful.
+
+## BadFindWord and GoodFindWord.
 
 What are the differences?
 
@@ -14,7 +22,7 @@ Make sure you are in the same directory as the source files.
 
 ## BadFindWord
 
-Run `javac BadFindWord.java` and then `java BadFindWord` to see the operations.
+Run `javac BadFindWord.java` and then `java BadFindWord` to see the output.
 
 ## GoodFindWord
 

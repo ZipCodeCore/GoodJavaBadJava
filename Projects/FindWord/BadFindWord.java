@@ -1,11 +1,13 @@
 import java.util.Scanner;
 
-// this is a decent example of why static simetimes works.
+// this is a decent example of why static is sometimes appropriate.
 // but there are other problems.
+// 
+// count = new FindWord.countWords(str, word); //eww~! this is smelly code
 
 public class BadFindWord {
 
-    public static int countWords(String input, String target) {
+    public int countWords(String input, String target) {
         int wordsLen, i, count=0;
         input = input.toLowerCase();
         target = target.toLowerCase();

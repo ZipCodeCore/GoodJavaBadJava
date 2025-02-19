@@ -6,7 +6,9 @@ what are the differences.
 
 You can compile and run these sources by
 
-`javac *.java` in a terminal and then `java Deal` to run the compiled class. Make sure you are in the same directory as the source files. (do a `pwd` to check. or doa `ls` to that the java and class files are in the same directory)
+`javac *.java` in a terminal and then `java` "something" to run the compiled class. 
+Make sure you are in the same directory as the source files. 
+_do a `pwd` to check. or do a `ls` to check that the java and class files are in the this directory_
 
 ## BadDeal
 

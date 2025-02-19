@@ -17,6 +17,7 @@ import java.util.*;
  * 
  * You should also write a test class that tests the encryption and decryption methods.
  * 
+ * YO! could you use XOR to do this bit by bit?
  */
 
 

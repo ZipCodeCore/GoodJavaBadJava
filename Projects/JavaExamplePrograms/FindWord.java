@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class FindWord {
 
-    public int countWords(String input, String target) {
+    public static int countWords(String input, String target) {
         int wordsLen, i, count=0;
         input = input.toLowerCase();
         target = target.toLowerCase();
@@ -29,13 +29,13 @@ public class FindWord {
         System.out.print("\nEnter a Word to Find its Occurrence: ");
         word = s.next();
 
-        count = new FindWord.countWords(str, word);
+        count = FindWord.countWords(str, word);
 
         System.out.println(testResult(count, word));
 
     }
 
-    public String testResult(int count, String word) {
+    public static String testResult(int count, String word) { // this is a bad example of crutching on `static`
         if(count==0)
             return "\nThe word \"" +word+ "\" is not found in the String.";
         else if(count==1)

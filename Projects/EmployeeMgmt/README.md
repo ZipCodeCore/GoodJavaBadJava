@@ -1,7 +1,9 @@
 # BadEmployManagementSystem
 
-This might be the worst piece of java code I have ever seen. 
-It is a simple employee management system that is supposed to keep track of employees and their salaries. It is a console application that allows the user to add, remove, and list employees. 
+_This might be the worst piece of java code I have ever seen._
+
+It is a simple employee management system that is supposed to keep track of employees and their salaries. 
+It is a console application that allows the user to add, remove, and list employees. 
 The user can also give a raise to an employee.
 
 And yet, the code is so bad due to the use of classes in ways classses should not be used.
@@ -25,5 +27,6 @@ And I cannot fathom why it's important for us to track an employee's father's na
 4. Add a method to list all employees and their salaries.
 
 
-NOTICE that I am not calling the possible re-work as "GoodEmployManagementSystem" because it is still a bad piece of code. It is just less bad than before.
-So we're going with calling it "BetterEmployManagementSystem" instead.
+NOTICE that I am not calling the possible re-work as "GoodEmployManagementSystem" because it is still a bad piece of code. 
+**It is just less bad than before.**
+So we're going with calling it "BetterEmployManagementSystem" instead, such is _smelly code_ (Yeas, code **can smell**, and I want you to puzzle it out).

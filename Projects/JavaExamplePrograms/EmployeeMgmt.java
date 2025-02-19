@@ -1,3 +1,13 @@
+
+
+/**
+* This is the WORST piece of Java code I have ever seen. It is a complete mess.
+* Why?
+*
+* It is "teeth-chatteringly bad"
+*/
+
+
 /******************** Importing Essential Libraries ************************/
 
 import java.util.*;
@@ -8,6 +18,12 @@ import java.io.*;
 
 // What's the problem with this program?
 // How should it be organized?
+
+/**
+* This is the WORST piece of Java code I have ever seen. It is a complete mess.
+* Why?
+*/
+
 
 
 class MainMenu
@@ -167,6 +183,13 @@ class CodeExit
     System.exit(0);
   }
 }
+
+
+
+/**
+* This is the WORST piece of Java code I have ever seen. It is a complete mess.
+* Why?
+*/
 
 
 /***************************** Main Class *******************************/
