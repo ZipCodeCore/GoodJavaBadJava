@@ -1,6 +1,6 @@
 # ATM
 
-there some thigns wrong in the code, can you fix it?
+there some things wrong in the code, can you fix it?
 
 `javac *.java`
 
